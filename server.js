@@ -31,10 +31,6 @@ connection.once('open',()=>{
   console.log("MongoDB Database connection successful")
 })
 
-router.route('/').get((req,res)=>{
-  res.send(JSON.stringify({ Hello: "World"}));
- });
-
 const usersRouter = require('./routes/users')
 const dataCollectionsRouter = require('./routes/data')
 const guessSessionsRouter = require('./routes/guesses')
