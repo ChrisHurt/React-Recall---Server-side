@@ -7,8 +7,7 @@ let DataPoint = require('../models/datapoint.model');
 
 // View all Guess Sessions
 router.route('/').post((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(400).json('Action not allowed. Invalid user.')
   } 
   GuessSession.find()
@@ -18,8 +17,7 @@ router.route('/').post((req,res)=>{
 
 // Validate Guess Session
 router.route('/:session_id/isvalid').post((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(400).json('Action not allowed. Invalid user.')
   } 
   GuessSession.findById(req.params.session_id)
@@ -41,8 +39,7 @@ router.route('/:session_id/isvalid').post((req,res)=>{
 
 // View Guess Session by id
 router.route('/:id').get((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   }
   GuessSession.findById(req.params.id)
@@ -52,8 +49,7 @@ router.route('/:id').get((req,res)=>{
 
 // Add a Guess Session to a known collection id and user
 router.route('/:collection_id/add').post((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   }
   const user_id = req.body.user_id
@@ -80,8 +76,7 @@ router.route('/:collection_id/add').post((req,res)=>{
 
 // View all Guesses by Guess Session id
 router.route('/:guess_session_id/guesses').post((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(400).json('Action not allowed. Invalid user.')
   }
 
@@ -94,9 +89,7 @@ router.route('/:guess_session_id/guesses').post((req,res)=>{
 
 // View all guess sessions belonging to a user and data collection
 router.route('/data-collection/:collection_id').post((req,res)=>{
-
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
       res.status(404).json('Action not allowed. Invalid user.')
   } else {
 
@@ -131,8 +124,7 @@ router.route('/data-collection/:collection_id').post((req,res)=>{
 
 // View a guess by its' ID
 router.route('/guesses/:id').get((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   }
   Guess.findById(req.params.id)
@@ -142,8 +134,7 @@ router.route('/guesses/:id').get((req,res)=>{
 
 // Add a guess to a guess session by guess session id
 router.route('/:guess_session_id/:datapoint_id/add').post((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   }
   const remembered  = req.body.remembered;

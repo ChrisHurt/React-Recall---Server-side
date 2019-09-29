@@ -1,11 +1,11 @@
 const express = require('express');
-const session = require('express-session');
+// const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose')
 
-const redis = require('redis');
-const redisStore = require('connect-redis')(session);
-const client  = redis.createClient();
+// const redis = require('redis');
+// const redisStore = require('connect-redis')(session);
+// const client  = redis.createClient();
 
 require('dotenv').config();
 
@@ -13,12 +13,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl : 260}),
-  saveUninitialized: false,
-  resave: false
-}));
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl : 260}),
+//   saveUninitialized: false,
+//   resave: false
+// }));
 
 app.use(cors());
 app.use(express.json());

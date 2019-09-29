@@ -7,8 +7,7 @@ let Guess = require('../models/guess.model');
 let GuessSession = require('../models/guesssession.model');
 
 router.route('/metrics/:id').post((req,res)=>{
-  let sess = req.session;
-    if(!sess.user_id && !req.body.user_id){
+    if(!req.body.user_id){
       res.status(404).json('Action not allowed. Invalid user.')
     } else {
       
@@ -369,26 +368,18 @@ router.route('/metrics/:id').post((req,res)=>{
 
 // View all Data Collections by loggedin user
 router.route('/').post((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   } else {
-    if(!sess.user_id){
-      DataCollection.find({user: req.body.user_id})
-      .then(dataCollections => res.json(dataCollections))
-      .catch(err => res.status(400).json(`Error: ${err}`));
-    } else {
-      DataCollection.find({user: (sess.user_id)})
-        .then(dataCollections => res.json(dataCollections))
-        .catch(err => res.status(400).json(`Error: ${err}`));
-    }
+    DataCollection.find({user: req.body.user_id})
+    .then(dataCollections => res.json(dataCollections))
+    .catch(err => res.status(400).json(`Error: ${err}`));
   }
 });
 
 // View data collection by id
 router.route('/:id').get((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   } else {
     DataCollection.findById(req.params.id)
@@ -399,8 +390,7 @@ router.route('/:id').get((req,res)=>{
 
 // Add a data collection
 router.route('/add').post((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   } else {
     const collectionName  = req.body.collectionName;
@@ -424,8 +414,7 @@ router.route('/add').post((req,res)=>{
 // View all Data Points by Collection id
 router.route('/:collection_id/datapoints').post((req,res)=>{
   console.log('collection datapoints being accessed')
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   } else {
     DataCollection.findById(req.params.collection_id).then((dataCollection)=>{
@@ -440,8 +429,7 @@ router.route('/:collection_id/datapoints').post((req,res)=>{
 
 // View data point by data point id
 router.route('/datapoints/:id').get((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   } else {
     DataPoint.findById(req.params.id)
@@ -452,8 +440,7 @@ router.route('/datapoints/:id').get((req,res)=>{
 
 // Add a data point to a collection by collection id
 router.route('/:collection_id/add').post((req,res)=>{
-  let sess = req.session;
-  if(!sess.user_id && !req.body.user_id){
+  if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   } else {
     const memoryText  = req.body.memoryText;
