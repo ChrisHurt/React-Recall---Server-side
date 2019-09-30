@@ -84,8 +84,8 @@ router.route('/recent-results').post((req,res)=>{
               console.log()
               res.status(200).json({
                 collectionName: dataCollection.collectionName,
-                correct: guesses.reduce((total,currentGuess)=>total+currentGuess.remembered),
-                incorrect: guesses.length - guesses.reduce((total,currentGuess)=>total+currentGuess.remembered)
+                correct: guesses.reduce((total,currentGuess)=>total+currentGuess.remembered,0),
+                incorrect: guesses.length - guesses.reduce((total,currentGuess)=>total+currentGuess.remembered,0)
               })
             })
           })
