@@ -21,7 +21,7 @@ router.route('/add').post((req,res)=>{
       success: true
   }))
     .catch(err => res.status(200).json({
-      msg: `Error ${err}`,
+      msg: `Invalid username or email`,
       error: err,
       success: false
     }))
