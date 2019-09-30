@@ -73,7 +73,7 @@ router.route('/recent-results').post((req,res)=>{
       console.log(guessSessions[0]._id)
       console.log()
 
-      datacollection_id = uessSessions[0].dataCollection
+      datacollection_id = guessSessions[0].dataCollection
         Guess.find({guessSession: guessSessions[0]._id})
           .then(guesses => {
             DataCollection.findById(datacollection_id).then(dataCollection=>{
