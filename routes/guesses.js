@@ -72,14 +72,21 @@ router.route('/recent-results').post((req,res)=>{
       console.log('guessSessions[0]._id')
       console.log(guessSessions[0]._id)
       console.log()
+
+      datacollection_id = uessSessions[0].dataCollection
         Guess.find({guessSession: guessSessions[0]._id})
           .then(guesses => {
-            console.log()
-            console.log('guesses')
-            console.log(guesses)
-            console.log()
-            res.status(200).json({
-              msg: guesses
+            DataCollection.findById(datacollection_id).then(dataCollection=>{
+
+              console.log()
+              console.log('guesses')
+              console.log(guesses)
+              console.log()
+              res.status(200).json({
+                collectionName: dataCollection.collectionName,
+                correct: guesses.reduce((total,currentGuess)=>total+currentGuess.remembered),
+                incorrect: guesses.length - guesses.reduce((total,currentGuess)=>total+currentGuess.remembered)
+              })
             })
           })
     })
