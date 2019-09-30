@@ -52,7 +52,7 @@ router.route('/recent-results').post((req,res)=>{
   if(!req.body.user_id){
     res.status(400).json('Action not allowed. Invalid user.')
   } 
-  GuessSession.find({user: req.body.user_id})
+  GuessSession.find({user: req.body.user_id}).sort({updatedAt: 'desc'})
     .then(guessSessions => {
         console.log()
         console.log('guessSessions')
@@ -63,7 +63,7 @@ router.route('/recent-results').post((req,res)=>{
       // guessSession.sort({updatedAt: 'desc'})
 
         res.status(200).json({
-          msg: guessSession.sort({updatedAt: 'desc'})
+          msg: guessSessions
         })
     })
     .catch(err => res.status(200).json({
