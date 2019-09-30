@@ -58,8 +58,11 @@ router.route('/recent-results').post((req,res)=>{
         console.log('guessSessions')
         console.log(guessSessions)
         console.log()
+
+      guessSessions.map(guessSession=> guessSession.updatedAt)
+
         res.status(200).json({
-          msg: guessSessions
+          msg: guessSessions.map(guessSession=> guessSession.updatedAt)
         })
     })
     .catch(err => res.status(200).json({
