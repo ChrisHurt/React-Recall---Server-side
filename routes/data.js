@@ -378,7 +378,7 @@ router.route('/').post((req,res)=>{
 });
 
 // View data collection by id
-router.route('/:id').get((req,res)=>{
+router.route('/:id').post((req,res)=>{
   if(!req.body.user_id){
     res.status(404).json('Action not allowed. Invalid user.')
   } else {
