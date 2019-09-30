@@ -59,10 +59,11 @@ router.route('/recent-results').post((req,res)=>{
         console.log(guessSessions)
         console.log()
 
-      guessSessions.map(guessSession=> guessSession.updatedAt)
+      // guessSessions.map(guessSession=> guessSession.updatedAt)
+      // guessSession.sort({updatedAt: 'desc'})
 
         res.status(200).json({
-          msg: guessSessions.map(guessSession=> guessSession.updatedAt)
+          msg: guessSession.sort({updatedAt: 'desc'})
         })
     })
     .catch(err => res.status(200).json({
