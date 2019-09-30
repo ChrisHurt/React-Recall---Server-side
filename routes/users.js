@@ -20,7 +20,7 @@ router.route('/add').post((req,res)=>{
       msg: 'User added!',
       success: true
   }))
-    .catch(err => res.status(400).json({
+    .catch(err => res.status(200).json({
       msg: `Error ${err}`,
       success: false
     }))
