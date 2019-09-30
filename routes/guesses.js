@@ -54,9 +54,18 @@ router.route('/recent-results').post((req,res)=>{
   } 
   GuessSession.find({user: req.body.user_id}).sort({updatedAt: 'asc'})
     .then(guessSessions => {
-        guessSessions[0]
-        Guess.find({guessSession: guessSessions[0]._id})
-          .then(guesses=>{
+      console.log()
+      console.log('guessSessions[0]')
+      console.log(guessSessions[0])
+      console.log()
+      console.log('guessSessions[0].id')
+      console.log(guessSessions[0].id)
+      console.log()
+      console.log('guessSessions[0]._id')
+      console.log(guessSessions[0]._id)
+      console.log()
+        Guess.find({guessSession: guessSessions[0].id})
+          .then(guesses => {
             res.status(200).json({
               msg: guesses
             })
