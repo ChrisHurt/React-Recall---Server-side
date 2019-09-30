@@ -21,14 +21,16 @@ router.route('/login').post((req,res)=>{
           msg: `User '${req.body.username}' Authenticated`,
           authenticated: true,
           // Temporary Solution, not secure
-          user_id: users[0]._id
+          user_id: users[0]._id,
+          username: users[0].username
         })
         
       } else {
         res.status(400).json({
           msg: `Invalid username or password, not authenticated`,
           authenticated: false,
-          user_id: ''
+          user_id: '',
+          username: ''
         })
       }
     }
