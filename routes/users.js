@@ -22,6 +22,7 @@ router.route('/add').post((req,res)=>{
   }))
     .catch(err => res.status(200).json({
       msg: `Error ${err}`,
+      error: err,
       success: false
     }))
 });
