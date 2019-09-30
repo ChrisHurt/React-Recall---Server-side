@@ -26,7 +26,7 @@ router.route('/login').post((req,res)=>{
         })
         
       } else {
-        res.status(400).json({
+        res.status(200).json({
           msg: `Invalid username or password, not authenticated`,
           authenticated: false,
           user_id: '',

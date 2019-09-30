@@ -54,7 +54,6 @@ router.route('/recent-results').post((req,res)=>{
   } 
   GuessSession.find({user: req.body.user_id}).sort({updatedAt: 'desc'})
     .then(guessSessions => {
-
       guessSessions = guessSessions.filter(guessSession=> {
         if(guessSession.guesses && guessSession.guesses.length > 0){
           return true
