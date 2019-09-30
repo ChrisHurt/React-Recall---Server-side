@@ -64,8 +64,12 @@ router.route('/recent-results').post((req,res)=>{
       console.log('guessSessions[0]._id')
       console.log(guessSessions[0]._id)
       console.log()
-        Guess.find({guessSession: guessSessions[0].id})
+        Guess.find({guessSession: guessSessions[0]._id})
           .then(guesses => {
+            console.log()
+            console.log('guesses')
+            console.log(guesses)
+            console.log()
             res.status(200).json({
               msg: guesses
             })
