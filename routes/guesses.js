@@ -37,6 +37,36 @@ router.route('/:session_id/isvalid').post((req,res)=>{
     }));
 });
 
+// View all Guess Sessions
+router.route('/').post((req,res)=>{
+  if(!req.body.user_id){
+    res.status(400).json('Action not allowed. Invalid user.')
+  } 
+  GuessSession.find()
+    .then(guessSessions => res.json(guessSessions))
+    .catch(err => res.status(400).json(`Error: ${err}`));
+});
+
+// Return Recent Results
+router.route('/recent-results').post((req,res)=>{
+  if(!req.body.user_id){
+    res.status(400).json('Action not allowed. Invalid user.')
+  } 
+  GuessSession.find({user: req.body.user_id})
+    .then(guessSessions => {
+        console.log()
+        console.log('guessSessions')
+        console.log(guessSessions)
+        console.log()
+        res.status(200).json({
+          msg: guessSessions
+        })
+    })
+    .catch(err => res.status(200).json({
+      guessSessionIsValid: false
+    }));
+});
+
 // View Guess Session by id
 router.route('/:id').get((req,res)=>{
   if(!req.body.user_id){
