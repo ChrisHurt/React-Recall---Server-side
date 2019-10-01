@@ -397,10 +397,17 @@ router.route('/add').post((req,res)=>{
     const user_id = req.body.user_id
     const newDataCollection = new DataCollection({collectionName, user: user_id});
   
-    newDataCollection.save()
-      .then((res,res2)=> {
+    newDataCollection.save((err,res4)=>{
+      console.log('err')
+        console.log(err)
+        console.log()
+        console.log('res4')
+        console.log(res4)
+        console.log()
+    })
+      .then((res3,res2)=> {
         console.log('res')
-        console.log(res)
+        console.log(res3)
         console.log()
         console.log('res2')
         console.log(res2)
