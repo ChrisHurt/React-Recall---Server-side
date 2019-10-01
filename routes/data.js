@@ -131,7 +131,7 @@ router.route('/add').post((req,res)=>{
     //     console.log('res4')
     //     console.log(res4)
     //     console.log()
-    // })
+    // })   
     //   .then((res3,res2)=> {
     //     console.log('res')
     //     console.log(res3)
@@ -157,7 +157,7 @@ router.route('/:id').post((req,res)=>{
   } else {
     DataCollection.findById(req.params.id)
       .then(dataCollection => res.json(dataCollection))
-      .catch(err => res.status(400).json(`Error: ${err}`))
+      .catch(err => res.status(400).json(`View Collection Error: ${err}`))
   }
 })
 
@@ -184,7 +184,7 @@ router.route('/datapoints/:id').get((req,res)=>{
   } else {
     DataPoint.findById(req.params.id)
       .then(dataPoint => res.json(dataPoint))
-      .catch(err => res.status(400).json(`Error: ${err}`))
+      .catch(err => res.status(400).json(`View Datapoint Error: ${err}`))
   }
 })
 
@@ -206,7 +206,7 @@ router.route('/:collection_id/add').post((req,res)=>{
           dataCollection.save().then(()=> res.json(`Data Point with memory text '${memoryText}' added to data collection: '${dataCollection.collectionName}'`))
         })
     })
-    .catch(err => res.status(400).json(`Error ${err}`))
+    .catch(err => res.status(400).json(`Add Datapoint Error ${err}`))
   }
 
 });
