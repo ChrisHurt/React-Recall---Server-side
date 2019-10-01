@@ -122,7 +122,7 @@ router.route('/add').post((req,res)=>{
         })
         .catch(err => res.status(400).json(`Add Collection to User Error ${err}`))
     })
-    .catch(err => res.status(400).json(`Save Collection Error ${err}`))
+    // .catch(err => res.status(400).json(`Save Collection Error ${err}`))
   
     // newDataCollection.save((err,res4)=>{
     //   console.log('err')
