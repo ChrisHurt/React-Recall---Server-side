@@ -398,14 +398,18 @@ router.route('/add').post((req,res)=>{
     const newDataCollection = new DataCollection({collectionName, user: user_id});
   
     newDataCollection.save()
-      .then(()=> {
+      .then((res,res2)=> {
+        console.log('res')
+        console.log(res)
+        console.log()
+        console.log('res2')
+        console.log(res2)
+        console.log()
         User.findById(user_id).then((user)=>{
-          // user.dataCollections = [...user.dataCollections,newDataCollection._id]
-          user.dataCollections = [...user.dataCollections,newDataCollection.id]
+          user.dataCollections = [...user.dataCollections,newDataCollection._id]
           user.save().then(()=>res.json({
             msg: `Data Collection '${collectionName}' added to user: '${user.username}'`,
-            // collection_id: newDataCollection._id
-            collection_id: newDataCollection.id
+            collection_id: newDataCollection._id
           }))
         })
       })
