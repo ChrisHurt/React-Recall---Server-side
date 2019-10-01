@@ -105,21 +105,13 @@ router.route('/add').post((req,res)=>{
     const collectionName  = req.body.collectionName;
     const user_id = req.body.user_id
     const newDataCollection = new DataCollection({collectionName, user: user_id});
-  
-    newDataCollection.save((err,res4)=>{
+
+    newDataCollection.save((err,newDataCollection)=>{
       console.log('err')
         console.log(err)
         console.log()
-        console.log('res4')
-        console.log(res4)
-        console.log()
-    })
-      .then((res3,res2)=> {
-        console.log('res')
-        console.log(res3)
-        console.log()
-        console.log('res2')
-        console.log(res2)
+        console.log('newDataCollection')
+        console.log(newDataCollection)
         console.log()
         User.findById(user_id).then((user)=>{
           user.dataCollections = [...user.dataCollections,newDataCollection._id]
@@ -128,8 +120,34 @@ router.route('/add').post((req,res)=>{
             collection_id: newDataCollection._id
           }))
         })
-      })
-      .catch(err => res.status(400).json(`Error ${err}`))
+        .catch(err => res.status(400).json(`Add Collection to User Error ${err}`))
+    })
+    .catch(err => res.status(400).json(`Save Collection Error ${err}`))
+  
+    // newDataCollection.save((err,res4)=>{
+    //   console.log('err')
+    //     console.log(err)
+    //     console.log()
+    //     console.log('res4')
+    //     console.log(res4)
+    //     console.log()
+    // })
+    //   .then((res3,res2)=> {
+    //     console.log('res')
+    //     console.log(res3)
+    //     console.log()
+    //     console.log('res2')
+    //     console.log(res2)
+    //     console.log()
+    //     User.findById(user_id).then((user)=>{
+    //       user.dataCollections = [...user.dataCollections,newDataCollection._id]
+    //       user.save().then(()=>res.json({
+    //         msg: `Data Collection '${collectionName}' added to user: '${user.username}'`,
+    //         collection_id: newDataCollection._id
+    //       }))
+    //     })
+    //   })
+    //   .catch(err => res.status(400).json(`Error ${err}`))
   }
 });
 // View data collection by id
