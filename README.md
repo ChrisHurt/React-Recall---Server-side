@@ -79,7 +79,7 @@ Chris Hurt - chrishcoding@gmail.com
 ### Demo User
  - username: Carla
  - password: 123
- - Link: [https://github.com/ChrisHurt/React-Recall---Server-side](https://github.com/ChrisHurt/React-Recall---Server-side)
+ - Link: [https://chrishurt.github.io/React-Recall/](https://chrishurt.github.io/React-Recall/)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
